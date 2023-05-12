@@ -4,23 +4,15 @@ pipeline {
         maven 'M2_HOME'
     }
     environment {
-    registry = '076892551558.dkr.ecr.us-east-1.amazonaws.com/devops-terra'
-    registryCredential = 'aws-credentials'
+    registry = '782434001163.dkr.ecr.us-east-1.amazonaws.com/devops-terra'
+    registryCredential = 'aws-credential'
     dockerimage = ''
   }
     stages {
         stage('Checkout'){
             steps{
-                git branch: 'main', url: 'https://github.com/kserge2001/maven-test.git'
+                git branch: 'main', url: 'https://github.com/dakzit/maventest1.git'
             }
-        }
-        stage ("Sonarqube scan") {
-          steps{
-          withSonarQubeEnv('sonar') {  
-        sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=kserge2001_geo'
-                }
-  
-          }
         }
         stage('Code Build') {
             steps {
